@@ -2,6 +2,8 @@ package com.universidad.estudiantes.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "estudiantes")
@@ -29,6 +31,9 @@ public class Estudiante {
     @Column(name = "carrera", nullable = false, length = 100)
     private String carrera;
 
+    @ManyToMany(mappedBy = "estudiantes")
+    private Set<Curso> cursos = new HashSet<>();
+
     // Constructor vacío requerido por JPA
     public Estudiante() {}
 
@@ -47,4 +52,7 @@ public class Estudiante {
 
     public String getCarrera()             { return carrera; }
     public void setCarrera(String carrera) { this.carrera = carrera; }
+
+    public Set<Curso> getCursos()              { return cursos; }
+    public void setCursos(Set<Curso> cursos)   { this.cursos = cursos; }
 }
