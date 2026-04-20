@@ -3,7 +3,7 @@
 <head><title th:text="${titulo}">Formulario</title></head>
 <body>
 <h1 th:text="${titulo}"></h1>
-<form th:action="@{/estudiantes/guardar}" th:object="${estudiante}" method="post">
+<form th:action="@{/templates/estudiantes/cursos/guardar}" th:object="${estudiante}" method="post">
     <input type="hidden" th:field="*{id}" />
     <div>
         <label>Nombre:</label>
@@ -26,7 +26,7 @@
         <span th:if="${#fields.hasErrors('carrera')}" th:errors="*{carrera}"></span>
     </div>
     <button type="submit">Guardar</button>
-    <a th:href="@{/estudiantes}">Cancelar</a>
+    <a th:href="@{/templates/estudiantes/cursos}">Cancelar</a>
 </form>
 </body>
 </html>

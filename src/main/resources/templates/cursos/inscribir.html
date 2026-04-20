@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Inscribir Estudiante</title></head>
+<body>
+<h1>Inscribir en: <span th:text="${curso.nombre}"></span></h1>
+
+<h2>Estudiantes inscritos</h2>
+<table>
+    <thead>
+    <tr><th>Nombre</th><th>Apellido</th><th>Acción</th></tr>
+    </thead>
+    <tbody>
+    <tr th:each="e : ${curso.estudiantes}">
+        <td th:text="${e.nombre}"></td>
+        <td th:text="${e.apellido}"></td>
+        <td>
+            <form th:action="@{/cursos/{cursoId}/desinscribir/{estudianteId}
+                        (cursoId=${curso.id}, estudianteId=${e.id})}" method="post">
+                <button type="submit">Desinscribir</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Inscribir estudiante</h2>
+<table>
+    <thead>
+    <tr><th>Nombre</th><th>Apellido</th><th>Acción</th></tr>
+    </thead>
+    <tbody>
+    <tr th:each="e : ${estudiantes}">
+        <td th:text="${e.nombre}"></td>
+        <td th:text="${e.apellido}"></td>
+        <td>
+            <form th:action="@{/cursos/{cursoId}/inscribir/{estudianteId}
+                        (cursoId=${curso.id}, estudianteId=${e.id})}" method="post">
+                <button type="submit">Inscribir</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/cursos}">Volver</a>
+</body>
+</html>
